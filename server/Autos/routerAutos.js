@@ -17,7 +17,7 @@ routerAutos.get("/", (req, res) => {
   }
 });
 
-routerPersonas.get("/:id", (req, res) => {
+routerAutos.get("/:id", (req, res) => {
   try {
     const autos = busquedaAuto(req.params.id);
     res.status(201).json(autos);
@@ -25,6 +25,15 @@ routerPersonas.get("/:id", (req, res) => {
     res.json(manejarErrores(err));
   }
 });
+
+routerAutos.delete('/:id', (req, res) => {
+  try {
+    eliminarAuto(req.params.id)
+      res.sendStatus(204)
+  } catch (error) {
+      res.status(404).json({ error: error.message })
+  }
+})
 
 routerAutos.post("/", (req, res) => {
   try {

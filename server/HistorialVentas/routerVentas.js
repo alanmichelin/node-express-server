@@ -17,7 +17,7 @@ routerVentas.get("/", (req, res) => {
   }
 });
 
-routerPersonas.get("/:id", (req, res) => {
+routerVentas.get("/:id", (req, res) => {
   try {
     const ventas = busquedaVenta(req.params.id);
     res.status(201).json(ventas);
