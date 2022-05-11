@@ -23,3 +23,9 @@ export const busquedaPersona = (datos) => {
   const personaEncontrada = buscarDato(datos, personas);
   return personaEncontrada;
 };
+
+export const borrarPersona = (datos) => {
+  const personaEncontrado = buscarDato(datos, personas);
+  personas.splice(personaEncontrado,1);
+  return personaEncontrado;
+};

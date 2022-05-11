@@ -4,6 +4,7 @@ import {
   obtenerAutos,
   modificarAuto,
   busquedaAuto,
+  borrarAuto,
 } from "./autos.js";
 import { manejarErrores } from "../functions.js";
 const routerAutos = new Router();
@@ -26,15 +27,6 @@ routerAutos.get("/:id", (req, res) => {
   }
 });
 
-routerAutos.delete('/:id', (req, res) => {
-  try {
-    eliminarAuto(req.params.id)
-      res.sendStatus(204)
-  } catch (error) {
-      res.status(404).json({ error: error.message })
-  }
-})
-
 routerAutos.post("/", (req, res) => {
   try {
     const nuevoAuto = agregarAuto(req.body);
@@ -52,5 +44,14 @@ routerAutos.patch("/", (req, res) => {
     res.json(manejarErrores(err));
   }
 });
+
+routerAutos.delete('/', (req, res) => {
+  try {
+     const autoBorrado = borrarAuto(req.body)
+     res.status(201).json(autoBorrado);
+    } catch (err) {
+      res.json(manejarErrores(err));
+    }
+  });
 
 export { routerAutos };

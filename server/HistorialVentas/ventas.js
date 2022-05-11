@@ -22,3 +22,9 @@ export const busquedaVenta = (datos) => {
   const ventaEncontrada = buscarDato(datos, ventas);
   return autoEncontrado;
 };
+
+export const borrarVenta = (datos) => {
+  const ventaEncontrado = buscarDato(datos, ventas);
+  ventas.splice(ventaEncontrado,1);
+  return ventaEncontrado;
+};

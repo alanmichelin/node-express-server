@@ -5,6 +5,7 @@ import {
   obtenerPersonas,
   modificarPersonas,
   busquedaPersona,
+  borrarPersona,
 } from "./personas.js";
 const routerPersonas = new Router();
 
@@ -43,5 +44,16 @@ routerPersonas.patch("/", (req, res) => {
     res.json(manejarErrores(err));
   }
 });
+
+routerPersonas.delete('/', (req, res) => {
+  try {
+     const personaBorrado = borrarPersona(req.body)
+     res.status(201).json(personaBorrado);
+    } catch (err) {
+      res.json(manejarErrores(err));
+    }
+  });
+
+
 
 export { routerPersonas };
