@@ -1,4 +1,4 @@
-import { validarDatos } from "../functions.js";
+import { validarDatos } from "../../functions.js";
 
 export const insertarPersona = (datos) => {
   let persona = new Persona(datos);

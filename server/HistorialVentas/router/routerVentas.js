@@ -5,8 +5,8 @@ import {
   modificarVenta,
   busquedaVenta,
   borrarVenta,
-} from "./ventas.js";
-import { manejarErrores } from "../functions.js";
+} from "../services/ventas.js";
+import { manejarErrores } from "../../functions.js";
 const routerVentas = new Router();
 
 routerVentas.get("/", (req, res) => {
@@ -45,14 +45,13 @@ routerVentas.patch("/", (req, res) => {
   }
 });
 
-routerVentas.delete('/', (req, res) => {
+routerVentas.delete("/", (req, res) => {
   try {
-     const ventaBorrado = borrarVenta(req.body)
-     res.status(201).json(ventaBorrado);
-    } catch (err) {
-      res.json(manejarErrores(err));
-    }
-  });
-
+    const ventaBorrado = borrarVenta(req.body);
+    res.status(201).json(ventaBorrado);
+  } catch (err) {
+    res.json(manejarErrores(err));
+  }
+});
 
 export { routerVentas };

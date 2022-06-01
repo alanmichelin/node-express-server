@@ -1,5 +1,5 @@
-import { insertar } from "./auto.js";
-import { buscarDato, modificar} from "../functions.js";
+import { insertar } from "../models/auto.js";
+import { buscarDato, modificar } from "../../functions.js";
 const autos = [];
 
 export const obtenerAutos = () => {
@@ -25,8 +25,6 @@ export const busquedaAuto = (datos) => {
 
 export const borrarAuto = (datos) => {
   const autoEncontrado = buscarDato(datos, autos);
-  autos.splice(autoEncontrado,1);
+  autos.splice(autoEncontrado, 1);
   return autoEncontrado;
 };
-
-

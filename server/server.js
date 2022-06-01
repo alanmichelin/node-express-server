@@ -1,7 +1,7 @@
 import express from "express";
-import { routerAutos } from "./Autos/routerAutos.js";
-import { routerPersonas } from "./Personas/routerPersonas.js";
-import { routerVentas } from "./HistorialVentas/routerVentas.js";
+import { routerAutos } from "./Autos/router/routerAutos.js";
+import { routerPersonas } from "./Personas/router/routerPersonas.js";
+import { routerVentas } from "./HistorialVentas/router/routerVentas.js";
 const app = express();
 
 app.use(express.json());

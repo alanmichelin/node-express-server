@@ -1,5 +1,5 @@
-import { insertarPersona } from "./persona.js";
-import { buscarDato, modificar } from "../functions.js";
+import { insertarPersona } from "../models/persona.js";
+import { buscarDato, modificar } from "../../functions.js";
 
 const personas = [];
 
@@ -26,6 +26,6 @@ export const busquedaPersona = (datos) => {
 
 export const borrarPersona = (datos) => {
   const personaEncontrado = buscarDato(datos, personas);
-  personas.splice(personaEncontrado,1);
+  personas.splice(personaEncontrado, 1);
   return personaEncontrado;
 };

@@ -1,5 +1,5 @@
-import { insertar } from "./venta.js";
-import { buscarDato, modificar } from "../functions.js";
+import { insertar } from "../models/venta.js";
+import { buscarDato, modificar } from "../../functions.js";
 const ventas = [];
 
 export const obtenerVentas = () => {
@@ -25,6 +25,6 @@ export const busquedaVenta = (datos) => {
 
 export const borrarVenta = (datos) => {
   const ventaEncontrado = buscarDato(datos, ventas);
-  ventas.splice(ventaEncontrado,1);
+  ventas.splice(ventaEncontrado, 1);
   return ventaEncontrado;
 };

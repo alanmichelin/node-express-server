@@ -5,8 +5,8 @@ import {
   modificarAuto,
   busquedaAuto,
   borrarAuto,
-} from "./autos.js";
-import { manejarErrores } from "../functions.js";
+} from "../services/autos.js";
+import { manejarErrores } from "../../functions.js";
 const routerAutos = new Router();
 
 routerAutos.get("/", (req, res) => {
@@ -45,13 +45,13 @@ routerAutos.patch("/", (req, res) => {
   }
 });
 
-routerAutos.delete('/', (req, res) => {
+routerAutos.delete("/", (req, res) => {
   try {
-     const autoBorrado = borrarAuto(req.body)
-     res.status(201).json(autoBorrado);
-    } catch (err) {
-      res.json(manejarErrores(err));
-    }
-  });
+    const autoBorrado = borrarAuto(req.body);
+    res.status(201).json(autoBorrado);
+  } catch (err) {
+    res.json(manejarErrores(err));
+  }
+});
 
 export { routerAutos };

@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { manejarErrores } from "../functions.js";
+import { manejarErrores } from "../../functions.js";
 import {
   agregarPersona,
   obtenerPersonas,
   modificarPersonas,
   busquedaPersona,
   borrarPersona,
-} from "./personas.js";
+} from "../services/personas.js";
 const routerPersonas = new Router();
 
 routerPersonas.get("/", (req, res) => {
@@ -45,15 +45,13 @@ routerPersonas.patch("/", (req, res) => {
   }
 });
 
-routerPersonas.delete('/', (req, res) => {
+routerPersonas.delete("/", (req, res) => {
   try {
-     const personaBorrado = borrarPersona(req.body)
-     res.status(201).json(personaBorrado);
-    } catch (err) {
-      res.json(manejarErrores(err));
-    }
-  });
-
-
+    const personaBorrado = borrarPersona(req.body);
+    res.status(201).json(personaBorrado);
+  } catch (err) {
+    res.json(manejarErrores(err));
+  }
+});
 
 export { routerPersonas };
