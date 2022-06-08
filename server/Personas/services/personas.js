@@ -1,31 +1,37 @@
-import { insertarPersona } from "../models/persona.js";
-import { buscarDato, modificar } from "../../functions.js";
+import { insertarPersona } from "./persona.js";
+//import { buscarDato, modificar } from "../functions.js";
+import dao from './DAO/personasDao.js';
 
-const personas = [];
+function validarNombreUnico(nombre){
+  if(!dao.nombreEstaDisponible(nombre)) throw new Error('El nombre debe ser unico')
+}
 
-export const obtenerPersonas = () => {
-  return [...personas];
-};
+//=================================================================
 
-export const agregarPersona = (datos) => {
-  const persona = insertarPersona(datos);
-  personas.push(persona);
-  return persona;
-};
+//Vieja
+export function obtenerPersonas(){
+  return dao.recuperarPersonas()
+}
 
-export const modificarPersonas = (datos) => {
-  const personaEncontrada = buscarDato(datos, personas);
-  const personaModificada = modificar(personaEncontrada, datos);
-  return personaModificada;
-};
+export function agregarPersona(datos){
+  validarNombreUnico(datos.nombre)
+  const persona = insertarPersona(datos)
+  dao.guardarPersona(persona)
+  return persona
+}
 
-export const busquedaPersona = (datos) => {
-  const personaEncontrada = buscarDato(datos, personas);
-  return personaEncontrada;
-};
+export function modificarPersonas(datos){
+   const persona = insertarPersona(datos)
+   //persona.id=datos.id
+   dao.guardarPersona(persona)
+}
 
-export const borrarPersona = (datos) => {
-  const personaEncontrado = buscarDato(datos, personas);
-  personas.splice(personaEncontrado, 1);
-  return personaEncontrado;
-};
+export function busquedaPersonaPorID(id) 
+{
+return dao.recuperarPersona(id)
+}
+
+export function borrarPersonaPorID(id) 
+{
+  return dao.eliminarPersona(id.id)
+}
