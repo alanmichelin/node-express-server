@@ -1,30 +1,22 @@
-import { insertar } from "../models/venta.js";
-import { buscarDato, modificar } from "../../functions.js";
+import dao from "../database/ventasDao.js";
 const ventas = [];
 
 export const obtenerVentas = () => {
-  return [...ventas];
+  return dao.obtenerVentas();
 };
 
 export const agregarVenta = (datos) => {
-  const venta = insertar(datos);
-  ventas.push(venta);
-  return venta;
+  return dao.agregarVenta(datos);
 };
 
 export const modificarVenta = (datos) => {
-  const ventaEncontrada = buscarDato(datos, ventas);
-  const ventaModificada = modificar(ventaEncontrada, datos);
-  return ventaModificada;
+  return dao.modificarVenta(datos);
 };
 
 export const busquedaVenta = (datos) => {
-  const ventaEncontrada = buscarDato(datos, ventas);
-  return autoEncontrado;
+  return dao.busquedaVenta(datos);
 };
 
 export const borrarVenta = (datos) => {
-  const ventaEncontrado = buscarDato(datos, ventas);
-  ventas.splice(ventaEncontrado, 1);
-  return ventaEncontrado;
+  return dao.borrarVenta(datos);
 };
