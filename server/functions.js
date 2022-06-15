@@ -23,7 +23,6 @@ export const modificar = (dato, nuevoDato) => {
   return dato;
 };
 
-
 export const buscarDato = (dato, coleccion) => {
   const datoEncontrado = coleccion.find((e) => e.id == dato.id);
 

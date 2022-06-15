@@ -1,11 +1,6 @@
 import { Router } from 'express';
-import {
-  agregarAuto,
-  obtenerAutos,
-  modificarAuto,
-  busquedaAuto,
-} from "../services/autos.js";
-// import * as api from '../services/autos.js'
+
+ import * as api from '../services/autos.js'
 // hacer carpeta services para no pasar metodo por metodo como arriba
 
 //import { prepararRespuestaConError } from '../../shared/errors/mappings/mappings.js'
@@ -15,49 +10,69 @@ import { manejarErrores } from "../../functions.js";
 
 const routerAutos = new Router();
 
-routerAutos.get("/", (req, res) => {
+routerAutos.get('/', (req, res, next) => {
+  let Autos
   try {
-    const autos = obtenerAutos();
-    res.status(201).json(autos);
-  } catch (err) {
-    res.json(manejarErrores(err));
+      if (req.query.marca) {
+          Autos = api.obtenerAutosSegunMarca(req.query.marca)
+      } else {
+          Autos = api.obtenerAutos()
+      }
+      res.json(Autos)
+  } catch (error) {
+      const { mensaje, codigo } = prepararRespuestaConError(error)
+      res.status(codigo).json({ mensaje })
   }
-});
+})
 
-routerAutos.get("/:id", (req, res) => {
+routerAutos.get('/:id', (req, res, next) => {
   try {
-    const autos = busquedaAuto(req.params.id);
-    res.status(201).json(autos);
-  } catch (err) {
-    res.json(manejarErrores(err));
+      const auto = api.obtenerAutosegunId(req.params.id)
+      res.json(auto)
+  } catch (error) {
+      const { mensaje, codigo } = prepararRespuestaConError(error)
+      res.status(codigo).json({ mensaje })
   }
-});
+})
 
-routerAutos.delete('/:id', (req, res) => {
+routerAutos.post('/', (req, res, next) => {
   try {
-    eliminarAuto(req.params.id)
+      const auto = req.body
+      const autoAgregado = api.agregarAuto(auto)
+      res.status(201).json(autoAgregado)
+  } catch (error) {
+      if (error.tipo === 'NOMBRE_UNICO') {
+          res.status(409).json({ error: error.message })
+      } else {
+          res.status(400).json({ error: error.message })
+      }
+  }
+})
+
+routerAutos.delete('/:id', (req, res, next) => {
+  try {
+      api.borrarAutosegunId(req.params.id)
       res.sendStatus(204)
   } catch (error) {
       res.status(404).json({ error: error.message })
   }
 })
 
-routerAutos.post("/", (req, res) => {
+routerAutos.put('/:id', (req, res, next) => {
   try {
-    const nuevoAuto = agregarAuto(req.body);
-    res.status(201).json(nuevoAuto);
-  } catch (err) {
-    res.json(manejarErrores(err));
+      const datosActualizados = req.body
+      const autoActualizada = api.reemplazarAuto(req.params.id, datosActualizados)
+      res.json(autoActualizado)
+  } catch (error) {
+      if (error.tipo === 'NO_ENCONTRADO') {
+          res.status(404).json({ error: error.message })
+      } else {
+          res.status(400).json({ error: error.message })
+      }
   }
-});
+})
 
-routerAutos.patch("/", (req, res) => {
-  try {
-    const autoModificado = modificarAuto(req.body);
-    res.status(201).json(autoModificado);
-  } catch (err) {
-    res.json(manejarErrores(err));
-  }
-});
 
 export { routerAutos };
+
+
