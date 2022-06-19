@@ -1,5 +1,8 @@
 import { insertar } from "../models/venta.js";
-import { buscarDato, modificar } from "../../functions.js";
+import {
+  buscarDato,
+  modificar,
+} from "../../shared/helpers/FuncionesMemoria.js";
 
 const ventas = [];
 
