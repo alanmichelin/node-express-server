@@ -1,12 +1,12 @@
 import express from "express";
-// import { routerAutos } from "./Autos/routerAutos.js";
+import { routerAutos } from "./Autos/router/routerAutos.js";
 import { routerPersonas } from "./Personas/router/routerPersonas.js";
 import { routerVentas } from "./HistorialVentas/router/routerVentas.js";
 import { manejarErrores } from "./shared/errors/ManejadorErrores.js";
 const app = express();
 
 app.use(express.json());
-// app.use("/api/autos", routerAutos);
+app.use("/api/autos", routerAutos);
 app.use("/api/personas", routerPersonas);
 app.use("/api/ventas", routerVentas);
 
