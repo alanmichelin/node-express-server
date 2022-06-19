@@ -1,4 +1,4 @@
-import { crearErrorRecursoNoEncontrado } from "../../shared/errors/models/ErrorRecursoNoEncontrado.js";
+// import { crearErrorRecursoNoEncontrado } from "../../shared/errors/ErrorRecursoNoEncontrado.js";
 import { crearErrorNoEncontrado } from "../../shared/errors/ErrorNoEncontrado.js";
 import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
 
@@ -18,7 +18,7 @@ export function recuperarAuto(id) {
   if (buscada) {
     return copiarAuto(buscada);
   } else {
-    throw crearErrorRecursoNoEncontrado("Auto");
+    throw crearErrorNoEncontrado("Auto");
   }
 }
 
@@ -33,7 +33,7 @@ export function recuperarAutosSegunTema(tema) {
 export function eliminarAuto(id) {
   const indiceBuscado = Autos.findIndex((c) => c.id === id);
   if (indiceBuscado === -1) {
-    throw crearErrorRecursoNoEncontrado("Auto");
+    throw crearErrorNoEncontrado("Auto");
   } else {
     Autos.splice(indiceBuscado, 1);
   }
