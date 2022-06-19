@@ -12,7 +12,8 @@ export async function getAll(req, res, next) {
     const ventas = obtenerVentas();
     res.json(ventas);
   } catch (err) {
-    res.json(manejarErrores(err));
+    // res.json(manejarErrores(err));
+    next(err);
   }
 }
 
@@ -41,7 +42,7 @@ export async function patch(req, res, next) {
     const ventaModificada = modificarVenta(req.body);
     res.status(201).json(ventaModificada);
   } catch (err) {
-    res.json(manejarErrores(err));
+    next(err);
   }
 }
 
@@ -50,6 +51,6 @@ export async function deleteById(req, res, next) {
     const ventaBorrado = borrarVenta(req.body);
     res.status(201).json(ventaBorrado);
   } catch (err) {
-    res.json(manejarErrores(err));
+    next(err);
   }
 }

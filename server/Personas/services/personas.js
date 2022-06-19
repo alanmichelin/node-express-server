@@ -1,5 +1,6 @@
 import { insertarPersona } from "../models/persona.js";
 //import { buscarDato, modificar } from "../functions.js";
+
 import dao from "../database/personasDao.js";
 
 function validarNombreUnico(nombre) {
@@ -7,9 +8,6 @@ function validarNombreUnico(nombre) {
     throw new Error("El nombre debe ser unico");
 }
 
-//=================================================================
-
-//Vieja
 export function obtenerPersonas() {
   return dao.recuperarPersonas();
 }

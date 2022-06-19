@@ -1,13 +1,14 @@
 import { crearErrorNoEncontrado } from "../errors/ErrorNoEncontrado.js";
 import { crearErrorDeDatosFaltantes } from "../errors/ErrorDeDatosFaltantes.js";
 export const validarDatos = (datoAInsertar) => {
-  console.log("en validar datos");
   let camposIncompletos = Object.keys(datoAInsertar).filter(
     (e) => datoAInsertar[e] === undefined
   );
   if (camposIncompletos.length > 0) {
     throw crearErrorDeDatosFaltantes(camposIncompletos);
   } else {
+    console.log("ok a insertar");
+
     return datoAInsertar;
   }
 };
