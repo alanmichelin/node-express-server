@@ -6,7 +6,7 @@ export const insertar = (datos) => {
 };
 
 function Venta({ id, valor, vendedor }) {
-  this.id = id;
+  this.id = id.toString();
   this.valor = valor;
   this.vendedor = vendedor;
 }
