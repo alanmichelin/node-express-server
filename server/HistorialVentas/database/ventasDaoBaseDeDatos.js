@@ -9,7 +9,6 @@ import { database } from "../../shared/databases/mongoDbClient.js";
 const ventas = database.collection("ventas");
 
 export const obtenerVentas = async () => {
-  console.log("en ventas db");
   const _ventas = await ventas.find({}).toArray();
   return _ventas;
 };
@@ -21,19 +20,28 @@ export const agregarVenta = (datos) => {
 };
 
 export const modificarVenta = async (datos) => {
-  console.log("modificando", datos);
-  const ventaModificada = await ventas.updateOne({ id: datos.id }, datos);
-  console.log(ventaModificada);
-  return ventaModificada;
+  let ventaModificada;
+  try {
+    ventaModificada = await ventas.updateOne({ id: datos.id }, { $set: datos });
+  } catch (err) {
+    throw crearErrorDePersistencia();
+  }
+
+  if (ventaModificada.modifiedCount === 0) {
+    throw crearErrorNoEncontrado(datos.id);
+  }
+  return datos;
 };
 
 export const busquedaVenta = async (_id) => {
-  console.log(typeof _id);
   let buscada;
   try {
     buscada = await ventas.findOne({ id: _id });
-    console.log(buscada);
   } catch (err) {
+    throw crearErrorDePersistencia();
+  }
+
+  if (buscada === null) {
     throw crearErrorNoEncontrado(_id);
   }
   return buscada;

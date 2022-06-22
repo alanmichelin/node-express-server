@@ -1,12 +1,15 @@
-import { validarDatos } from "../../shared/helpers/FuncionesMemoria.js";
+import {
+  validarDatos,
+  generarId,
+} from "../../shared/helpers/FuncionesMemoria.js";
 
 export const insertar = (datos) => {
   let venta = new Venta(datos);
   return validarDatos(venta);
 };
 
-function Venta({ id, valor, vendedor }) {
-  this.id = id.toString();
+function Venta({ valor, vendedor }) {
+  this.id = generarId();
   this.valor = valor;
   this.vendedor = vendedor;
 }

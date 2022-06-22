@@ -10,7 +10,6 @@ import {
 const routerPersonas = new Router();
 
 export async function getAll(req, res, next) {
-  console.log("asdsa");
   try {
     const personas = obtenerPersonas();
     res.json(personas);
