@@ -1,5 +1,6 @@
 import { crearErrorNoEncontrado } from "../errors/ErrorNoEncontrado.js";
 import { crearErrorDeDatosFaltantes } from "../errors/ErrorDeDatosFaltantes.js";
+import { Buffer } from "buffer";
 export const validarDatos = (datoAInsertar) => {
   let camposIncompletos = Object.keys(datoAInsertar).filter(
     (e) => datoAInsertar[e] === undefined
@@ -35,4 +36,8 @@ export const buscarDato = (dato, coleccion) => {
   } else {
     return datoEncontrado;
   }
+};
+
+export const generarId = () => {
+  return "ID" + Date.now();
 };

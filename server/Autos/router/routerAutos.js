@@ -10,9 +10,8 @@ import * as controllerAutos from "../controllers/controllerAutos.js";
 const routerAutos = new Router();
 
 routerAutos.get("/", controllerAutos.getAll);
-routerAutos.get("/:id", controllerAutos.getById);
 routerAutos.post("/", controllerAutos.post);
-// routerAutos.patch("/", controllerAutos.patch);
-// routerAutos.delete("/", controllerAutos.deleteById);
+routerAutos.patch("/", controllerAutos.patch);
+routerAutos.delete("/", controllerAutos.deleteById);
 
 export { routerAutos };

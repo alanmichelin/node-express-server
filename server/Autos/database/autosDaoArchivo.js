@@ -1,4 +1,5 @@
 import { crearErrorNoEncontrado } from "../../shared/errors/ErrorNoEncontrado.js";
+import { Auto } from "../models/auto.js";
 
 const Autos = [];
 
@@ -47,10 +48,12 @@ export function nombreEstaDisponible(nombre) {
   return Autos.every((c) => c.nombre !== nombre);
 }
 
-function copiarAuto(Auto) {
-  return { id: Auto.id, nombre: Auto.nombre, temas: Auto.temas };
+function copiarAuto(auto) {
+  console.log(new Auto(auto));
+  return new Auto(auto);
 }
 
 function copiarAutos(Autos) {
-  return Autos.map(copiarAuto);
+  console.log(Autos);
+  return Autos.map(copiarAuto(Autos));
 }

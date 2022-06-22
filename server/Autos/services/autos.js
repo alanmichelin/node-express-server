@@ -1,43 +1,35 @@
 import { crearAuto } from "../models/auto.js";
 
-import dao from '../database/autosDao.js'
+import dao from "../database/autosDao.js";
 
-import { crearErrorNombreUnico } from '../../shared/errors/ErrorNombreUnico.js'
-
-function validarNombreUnico(nombre) {
-  if (!dao.nombreEstaDisponible(nombre)) throw crearErrorNombreUnico()
-}
+import { Auto } from "../models/auto.js";
 
 export function obtenerAutos() {
-  return dao.recuperarAuto()
+  return dao.recuperarAutos();
 }
 
 export function agregarAuto(datosAuto) {
-  validarNombreUnico(datosAuto.nombre)
-  const Auto = crearAuto(datosAuto)
-  dao.guardarAuto(Auto)
-  return Auto
+  const Auto = crearAuto(datosAuto);
+  dao.guardarAuto(Auto);
+  return Auto;
 }
 
 export function borrarAutos() {
-  dao.eliminarAutos()
+  dao.eliminarAutos();
 }
 
 export function obtenerAutosSegunMarca(marca) {
-  return dao.recuperarAutosSegunMarca(marca)
+  return dao.recuperarAutosSegunMarca(marca);
 }
 
 export function obtenerAutoSegunId(id) {
-  return dao.recuperarAuto(id)
+  return dao.recuperarAuto(id);
 }
 
 export function borrarAutoSegunId(id) {
-  dao.eliminarAuto(id)
+  dao.eliminarAuto(id);
 }
 
-export function reemplazarAuto(id, datosAuto) {
-  const Auto = crearAuto(datosAuto)
-  Auto.id = id
-  dao.guardarAuto(Auto)
+export function reemplazarAuto(datos) {
+  dao.reemplazarAuto(datos);
 }
-

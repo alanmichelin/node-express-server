@@ -1,21 +1,17 @@
-
+import {
+  validarDatos,
+  generarId,
+} from "../../shared/helpers/FuncionesMemoria.js";
 
 export function crearAuto(datos) {
-  if (!datos.nombre) {
-      throw crearErrorDeDatosFaltantes('nombre')
-  }
-
-  if (!datos.temas) {
-      throw crearErrorDeDatosFaltantes('temas')
-  }
-
-  const Auto = {
-      id: obtenerNuevoId('Auto'),
-      marca: datos.marca,
-      modelo: datos.modelo,
-      valor: datos.valor,
-      disponible: datos.disponible,
-  }
-
-  return Auto
+  let auto = new Auto(datos);
+  console.log(auto);
+  return validarDatos(auto);
+}
+export function Auto({ marca, modelo, valor, disponible }) {
+  this.id = generarId();
+  this.marca = marca;
+  this.modelo = modelo;
+  this.valor = valor;
+  this.disponible = disponible;
 }

@@ -1,6 +1,7 @@
 // import { crearErrorRecursoNoEncontrado } from "../../shared/errors/ErrorRecursoNoEncontrado.js";
 import { crearErrorNoEncontrado } from "../../shared/errors/ErrorNoEncontrado.js";
-import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
+// import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
+import { Auto } from "../models/auto.js";
 
 const Autos = [];
 
@@ -18,7 +19,7 @@ export function recuperarAuto(id) {
   if (buscada) {
     return copiarAuto(buscada);
   } else {
-    throw crearErrorNoEncontrado("Auto");
+    throw crearErrorNoEncontrado(id);
   }
 }
 
@@ -33,7 +34,7 @@ export function recuperarAutosSegunTema(tema) {
 export function eliminarAuto(id) {
   const indiceBuscado = Autos.findIndex((c) => c.id === id);
   if (indiceBuscado === -1) {
-    throw crearErrorNoEncontrado("Auto");
+    throw crearErrorNoEncontrado(id);
   } else {
     Autos.splice(indiceBuscado, 1);
   }
@@ -45,12 +46,8 @@ export function eliminarAutos() {
   }
 }
 
-export function nombreEstaDisponible(nombre) {
-  return Autos.every((c) => c.nombre !== nombre);
-}
-
-function copiarAuto(Auto) {
-  return { id: Auto.id, nombre: Auto.nombre, temas: Auto.temas };
+function copiarAuto(auto) {
+  return new Auto(auto);
 }
 
 function copiarAutos(Autos) {

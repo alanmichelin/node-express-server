@@ -1,8 +1,7 @@
 import dao from "../database/ventasDao.js";
-const ventas = [];
 
-export const obtenerVentas = () => {
-  return dao.obtenerVentas();
+export const obtenerVentas = async () => {
+  return await dao.obtenerVentas();
 };
 
 export const agregarVenta = (datos) => {
@@ -13,8 +12,8 @@ export const modificarVenta = (datos) => {
   return dao.modificarVenta(datos);
 };
 
-export const busquedaVenta = (datos) => {
-  return dao.busquedaVenta(datos);
+export const busquedaVenta = async (datos) => {
+  return await dao.busquedaVenta(datos);
 };
 
 export const borrarVenta = (datos) => {
