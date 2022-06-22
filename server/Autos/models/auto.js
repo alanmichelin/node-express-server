@@ -8,9 +8,10 @@ export function crearAuto(datos) {
   console.log(auto);
   return validarDatos(auto);
 }
-export function Auto({ marca, modelo, valor, disponible }) {
+export function Auto({ marca, anio, modelo, valor, disponible }) {
   this.id = generarId();
   this.marca = marca;
+  this.anio = anio;
   this.modelo = modelo;
   this.valor = valor;
   this.disponible = disponible;

@@ -1,7 +1,10 @@
 import * as api from "../services/autos.js";
+import { verificarToken } from "../../shared/middleware/autenticacion.js";
 // import { manejarErrores } from "../../functions.js";
 
 export async function getAll(req, res, next) {
+  // verificarToken();
+
   let autos;
   if (req.query.id === undefined) {
     try {

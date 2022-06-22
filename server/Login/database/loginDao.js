@@ -1,7 +1,7 @@
 import { MODO_PERSISTENCIA } from "../../config/config.js";
 import * as daoArchivos from "./ventasDaoArchivo.js";
 import * as daoMemoria from "./ventasDaoMemoria.js";
-import * as daoBaseDeDatos from "./LoginDaoBaseDeDatos.js";
+import * as daoBaseDeDatos from "./loginDaoBaseDeDatos.js";
 
 let dao;
 

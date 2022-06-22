@@ -1,11 +1,4 @@
 import { validar } from "../models/login.js";
-import {
-  buscarDato,
-  modificar,
-} from "../../shared/helpers/FuncionesMemoria.js";
-import { crearErrorDePersistencia } from "../../shared/errors/ErrorBaseDeDatos.js";
-import { crearErrorNoEncontrado } from "../../shared/errors/errorNoEncontrado.js";
-import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
 import { crearErrorUsuarioUnico } from "../../shared/errors/ErrorUsuarioUnico.js";
 import { crearErrorCredencialesIncorectas } from "../../shared/errors/ErrorCredenciales.js";
 import { database } from "../../shared/databases/mongoDbClient.js";
