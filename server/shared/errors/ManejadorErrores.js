@@ -19,6 +19,12 @@ export const manejarErrores = (error, req, res, next) => {
     case "ERROR_PERSISTENCIA":
       httpError.mensaje = error.message;
       httpError.codigo = 500;
+    case "LOGIN_INCORRECTO":
+      httpError.mensaje = error.message;
+      httpError.codigo = 401;
+    case "MAIL_UNICO":
+      httpError.mensaje = error.message;
+      httpError.codigo = 401;
     default:
       httpError.mensaje = "Error interno";
       httpError.codigo = 500;
