@@ -1,28 +1,20 @@
 import { insertarPersona } from "../models/persona.js";
 //import { buscarDato, modificar } from "../functions.js";
-
+import { Persona } from "../models/persona.js";
 import dao from "../database/personasDao.js";
-
-function validarNombreUnico(nombre) {
-  if (!dao.nombreEstaDisponible(nombre))
-    throw new Error("El nombre debe ser unico");
-}
 
 export function obtenerPersonas() {
   return dao.recuperarPersonas();
 }
 
 export function agregarPersona(datos) {
-  validarNombreUnico(datos.nombre);
-  const persona = insertarPersona(datos);
-  dao.guardarPersona(persona);
-  return persona;
+  const Persona = insertarPersona(datos);
+  dao.guardarPersona(Persona);
+  return Persona;
 }
 
 export function modificarPersonas(datos) {
-  const persona = insertarPersona(datos);
-  //persona.id=datos.id
-  dao.guardarPersona(persona);
+  dao.guardarPersona(datos);
 }
 
 export function busquedaPersonaPorID(id) {
@@ -30,5 +22,6 @@ export function busquedaPersonaPorID(id) {
 }
 
 export function borrarPersonaPorID(id) {
-  return dao.eliminarPersona(id.id);
+  //Reemplazo id.id-->id
+  return dao.eliminarPersona(id);
 }

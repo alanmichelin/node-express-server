@@ -1,13 +1,12 @@
 import { Router } from "express";
-
+import { verificarToken } from "../../shared/middleware/autenticacion.js";
 import * as controllerPersonas from "../controllers/controllerPersonas.js";
 
 const routerPersonas = new Router();
 
 routerPersonas.get("/", controllerPersonas.getAll);
-routerPersonas.get("/:id", controllerPersonas.getById);
-routerPersonas.post("/", controllerPersonas.post);
-routerPersonas.patch("/", controllerPersonas.patch);
-// routerPersonas.delete("/", controllerPersonas.deleteById);
+routerPersonas.post("/", verificarToken, controllerPersonas.post);
+routerPersonas.patch("/", verificarToken, controllerPersonas.patch);
+routerPersonas.delete("/", verificarToken, controllerPersonas.deleteById);
 
 export { routerPersonas };

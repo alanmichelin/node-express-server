@@ -26,6 +26,7 @@ export function eliminarAutos() {
 }
 
 export async function reemplazarAuto(datos) {
+  console.log(datos);
   let autoModificado;
   try {
     autoModificado = await autos.updateOne({ id: datos.id }, { $set: datos });

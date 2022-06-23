@@ -1,15 +1,18 @@
-const personas = []
+import { Persona } from "../models/persona.js";
 
-export function guardarPersona(persona){
+const personas = [];
+
+export function guardarPersona(Persona){
   
-  const buscada = personas.findIndex(e => e.id === persona.id)
+  const buscada = personas.findIndex(e => e.id === Persona.id);
    if (!(buscada === -1)) {
-      personas.push(persona)
+      personas.push(Persona);
   } else {
-      personas[buscada] = persona
+      personas[buscada] = Persona;
   }
  
 }
+
 export function recuperarPersona(id){
   const buscada = personas.find(e => e.id === id)
 
@@ -32,7 +35,10 @@ export function recuperarPersonas(){
   return copiarPersonas(personas)
 }
 function copiarPersona(persona){
-  return ({id:persona.id,nombre:persona.nombre,apellido:persona.apellido,tipo:persona.tipo})
+
+  console.log(new Persona(persona));
+  return new Persona(persona);
+  //return ({id:persona.id,nombre:persona.nombre,apellido:persona.apellido,tipo:persona.tipo})
 }
 function copiarPersonas(personas){
   return personas.map(copiarPersona)

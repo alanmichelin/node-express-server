@@ -9,6 +9,7 @@ export const manejarErrores = (error, req, res, next) => {
     case "DATOS_FALTANTES":
       httpError.mensaje = error.message;
       httpError.codigo = 400;
+      break;
     case "NOT_FOUND":
       httpError.mensaje = error.message;
       httpError.codigo = 404;
@@ -16,18 +17,23 @@ export const manejarErrores = (error, req, res, next) => {
     case "NO_IMPLEMENTADO":
       httpError.mensaje = error.message;
       httpError.codigo = 501;
+      break;
     case "ERROR_PERSISTENCIA":
       httpError.mensaje = error.message;
       httpError.codigo = 500;
+      break;
     case "LOGIN_INCORRECTO":
       httpError.mensaje = error.message;
       httpError.codigo = 401;
+      break;
     case "MAIL_UNICO":
       httpError.mensaje = error.message;
       httpError.codigo = 401;
+      break;
     default:
       httpError.mensaje = "Error interno";
       httpError.codigo = 500;
+      break;
   }
   // return httpError;
   res.status(httpError.codigo).json(httpError.mensaje);

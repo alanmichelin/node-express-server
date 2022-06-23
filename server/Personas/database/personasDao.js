@@ -1,16 +1,21 @@
 import { MODO_PERSISTENCIA } from '../../config/config.js'
-import * as apiArchivos from './personasDaoArchivo.js'
-import * as apiMemoria from './personasDaoMemoria.js'
-
-let api
+import * as daoArchivos from './personasDaoArchivo.js'
+import * as daoMemoria from './personasDaoMemoria.js'
+import * as daoBaseDeDatos from "./personasDaoBaseDeDatos.js";
+let dao;
 
 switch (MODO_PERSISTENCIA) {
     case 'ARCHIVO':
-        api= apiArchivos
-        break
+        dao= daoArchivos
+        break;
+    case "DATABASE":
+        dao = daoBaseDeDatos;
+        break;
+
     default:
-        api= apiMemoria
+        dao = daoMemoria;
         
 }
 
-export default api
+export default dao
+//PROBAR EN ARCHIVO O DATABASE EN VES DE MEMORIA 
