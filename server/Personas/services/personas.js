@@ -14,7 +14,7 @@ export function agregarPersona(datos) {
 }
 
 export function modificarPersonas(datos) {
-  dao.guardarPersona(datos);
+  return dao.reemplazarPersona(datos);
 }
 
 export function busquedaPersonaPorID(id) {
@@ -22,6 +22,5 @@ export function busquedaPersonaPorID(id) {
 }
 
 export function borrarPersonaPorID(id) {
-  //Reemplazo id.id-->id
   return dao.eliminarPersona(id);
 }

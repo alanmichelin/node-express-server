@@ -1,6 +1,6 @@
 export const manejarErrores = (error, req, res, next) => {
   const httpError = {};
-  console.log(error);
+  console.log(`ERROR: ${error.tipo}`);
   switch (error.tipo) {
     case "DATA_VALIDATION":
       httpError.mensaje = error.message;
@@ -35,6 +35,5 @@ export const manejarErrores = (error, req, res, next) => {
       httpError.codigo = 500;
       break;
   }
-  // return httpError;
   res.status(httpError.codigo).json(httpError.mensaje);
 };

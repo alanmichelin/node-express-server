@@ -8,8 +8,6 @@ export const validarDatos = (datoAInsertar) => {
   if (camposIncompletos.length > 0) {
     throw crearErrorDeDatosFaltantes(camposIncompletos);
   } else {
-    console.log("ok a insertar");
-
     return datoAInsertar;
   }
 };
@@ -26,11 +24,7 @@ export const modificar = (dato, nuevoDato) => {
 };
 
 export const buscarDato = (dato, coleccion) => {
-  console.log("buscando");
-
   const datoEncontrado = coleccion.find((e) => e.id == dato);
-  console.log(datoEncontrado);
-
   if (datoEncontrado === undefined) {
     throw crearErrorNoEncontrado(dato);
   } else {

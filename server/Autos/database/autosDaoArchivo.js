@@ -49,11 +49,9 @@ export function nombreEstaDisponible(nombre) {
 }
 
 function copiarAuto(auto) {
-  console.log(new Auto(auto));
   return new Auto(auto);
 }
 
 function copiarAutos(Autos) {
-  console.log(Autos);
   return Autos.map(copiarAuto(Autos));
 }

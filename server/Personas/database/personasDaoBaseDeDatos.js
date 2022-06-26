@@ -9,7 +9,6 @@ const personas = database.collection("personas");
 
 export async function recuperarPersonas() {
   const _personas = await personas.find({}).toArray();
-  console.log(_personas);
   return _personas;
 }
 
@@ -47,6 +46,9 @@ export async function recuperarPersona(_id) {
   } catch (err) {
     throw crearErrorNoEncontrado(_id);
   }
+  if (!buscada) {
+    throw crearErrorNoEncontrado(_id);
+  }
   return buscada;
 }
 
@@ -61,4 +63,8 @@ export async function eliminarPersona(_id) {
   if (res.deletedCount === 0) {
     throw crearErrorNoEncontrado(_id);
   }
+  return {
+    id: _id,
+    borrada: !!res.deletedCount,
+  };
 }

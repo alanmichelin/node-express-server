@@ -11,7 +11,6 @@ const autos = database.collection("autos");
 
 export async function recuperarAutos() {
   const _autos = await autos.find({}).toArray();
-  console.log(_autos);
   return _autos;
 }
 
@@ -26,7 +25,6 @@ export function eliminarAutos() {
 }
 
 export async function reemplazarAuto(datos) {
-  console.log(datos);
   let autoModificado;
   try {
     autoModificado = await autos.updateOne({ id: datos.id }, { $set: datos });
@@ -51,6 +49,9 @@ export async function recuperarAuto(_id) {
   } catch (err) {
     throw crearErrorNoEncontrado(_id);
   }
+  if (!buscada) {
+    throw crearErrorNoEncontrado(_id);
+  }
   return buscada;
 }
 
@@ -63,6 +64,10 @@ export async function eliminarAuto(_id) {
   }
 
   if (res.deletedCount === 0) {
-    throw crearErrorNoEncontrado(datos);
+    throw crearErrorNoEncontrado(_id);
   }
+  return {
+    id: _id,
+    borrada: !!res.deletedCount,
+  };
 }

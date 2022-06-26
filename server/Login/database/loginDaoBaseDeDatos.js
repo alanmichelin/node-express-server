@@ -59,3 +59,14 @@ export const logearse = async (datos) => {
     throw err;
   }
 };
+
+export const borrarTests = async () => {
+  try {
+    res = await users.deleteOne({ email: "test@test.com" });
+  } catch (error) {
+    throw crearErrorDePersistencia();
+  }
+  return {
+    testUserBorrado: !!res.deletedCount,
+  };
+};

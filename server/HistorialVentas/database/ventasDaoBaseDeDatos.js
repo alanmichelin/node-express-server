@@ -6,6 +6,7 @@ import {
 import { crearErrorDePersistencia } from "../../shared/errors/ErrorBaseDeDatos.js";
 import { crearErrorNoEncontrado } from "../../shared/errors/errorNoEncontrado.js";
 import { database } from "../../shared/databases/mongoDbClient.js";
+import { Venta } from "../models/venta.js";
 const ventas = database.collection("ventas");
 
 export const obtenerVentas = async () => {
@@ -56,6 +57,10 @@ export const borrarVenta = async (_id) => {
   }
 
   if (res.deletedCount === 0) {
-    throw crearErrorNoEncontrado(datos);
+    throw crearErrorNoEncontrado(_id);
   }
+  return {
+    id: _id,
+    borrada: !!res.deletedCount,
+  };
 };

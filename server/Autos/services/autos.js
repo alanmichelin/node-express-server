@@ -27,9 +27,9 @@ export function obtenerAutoSegunId(id) {
 }
 
 export function borrarAutoSegunId(id) {
-  dao.eliminarAuto(id);
+  return dao.eliminarAuto(id);
 }
 
 export function reemplazarAuto(datos) {
-  dao.reemplazarAuto(datos);
+  return dao.reemplazarAuto(datos);
 }

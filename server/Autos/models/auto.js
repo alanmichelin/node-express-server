@@ -5,7 +5,6 @@ import {
 
 export function crearAuto(datos) {
   let auto = new Auto(datos);
-  console.log(auto);
   return validarDatos(auto);
 }
 export function Auto({ marca, anio, modelo, valor, disponible }) {

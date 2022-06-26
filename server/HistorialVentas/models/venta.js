@@ -8,8 +8,11 @@ export const insertar = (datos) => {
   return validarDatos(venta);
 };
 
-function Venta({ valor, vendedor }) {
+export function Venta({ valor, vendedor, isTest }) {
   this.id = generarId();
   this.valor = valor;
   this.vendedor = vendedor;
+  if (isTest) {
+    this.isTest = isTest;
+  }
 }
