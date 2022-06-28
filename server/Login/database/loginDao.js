@@ -5,11 +5,14 @@ import * as daoBaseDeDatos from "./loginDaoBaseDeDatos.js";
 let dao;
 
 switch (MODO_PERSISTENCIA) {
+  case "MEMORIA":
+    dao = daoMemoria;
+    break;
   case "DATABASE":
     dao = daoBaseDeDatos;
     break;
   default:
-    dao = daoBaseDeDatos;
+    dao = daoMemoria;
 }
 
 export default dao;
