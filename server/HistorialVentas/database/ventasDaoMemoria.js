@@ -17,7 +17,7 @@ export const agregarVenta = (datos) => {
 };
 
 export const modificarVenta = (datos) => {
-  const ventaEncontrada = buscarDato(datos, ventas);
+  const ventaEncontrada = buscarDato(datos.id, ventas);
   const ventaModificada = modificar(ventaEncontrada, datos);
   return ventaModificada;
 };
@@ -30,5 +30,8 @@ export const busquedaVenta = (datos) => {
 export const borrarVenta = (datos) => {
   const ventaEncontrado = buscarDato(datos, ventas);
   ventas.splice(ventaEncontrado, 1);
-  return ventaEncontrado;
+  return {
+    id: ventaEncontrado.id,
+    borrada: true,
+  };
 };

@@ -9,7 +9,7 @@ switch (MODO_PERSISTENCIA) {
     dao = daoBaseDeDatos;
     break;
   default:
-    dao = daoMemoria;
+    dao = daoBaseDeDatos;
 }
 
 export default dao;

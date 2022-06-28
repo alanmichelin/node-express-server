@@ -1,32 +1,36 @@
 import { crearErrorNoEncontrado } from "../../shared/errors/ErrorNoEncontrado.js";
 import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
 import { insertarPersona } from "../models/persona.js";
+import {
+  buscarDato,
+  modificar,
+} from "../../shared/helpers/FuncionesMemoria.js";
 const personas = [];
 
 export function guardarPersona(persona) {
   return personas.push(insertarPersona(persona));
 }
-export function recuperarPersona(id) {
-  const buscada = personas.find((e) => e.id === id);
-  if (buscada) {
-    return copiarPersona(buscada);
-  } else {
-    throw new crearErrorNoEncontrado(id);
-  }
-}
-export function recuperarPersonasSegunApellido(criterio) {
-  //recupero por apellidos
-  return copiarPersonas(personas.filter((c) => c.apellido.includes(criterio)));
+export async function recuperarPersona(_id) {
+  const personaEncontrada = buscarDato(_id, personas);
+  return personaEncontrada;
 }
 export function eliminarPersona(id) {
-  const buscada = personas.findIndex((e) => e.id === id);
-  if (buscada === -1) {
-    throw new crearErrorNoEncontrado(id);
-  } else {
-    personas.splice(buscada, 1);
-  }
+  const personaEncontrada = buscarDato(id, personas);
+  personas.splice(personaEncontrada, 1);
+  return {
+    id: personaEncontrada.id,
+    borrada: true,
+  };
 }
+
+export const reemplazarPersona = (datos) => {
+  const personaEncontrada = buscarDato(datos.id, personas);
+  const personaModificada = modificar(personaEncontrada, datos);
+  return personaModificada;
+};
+
 export function recuperarPersonas() {
+  console.log("recuperando personas");
   return copiarPersonas(personas);
 }
 export function eliminarPersonas() {

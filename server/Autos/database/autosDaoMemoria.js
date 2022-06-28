@@ -1,8 +1,9 @@
-// import { crearErrorRecursoNoEncontrado } from "../../shared/errors/ErrorRecursoNoEncontrado.js";
 import { crearErrorNoEncontrado } from "../../shared/errors/ErrorNoEncontrado.js";
-// import { crearErrorDeDatosFaltantes } from "../../shared/errors/ErrorDeDatosFaltantes.js";
 import { Auto } from "../models/auto.js";
-
+import {
+  buscarDato,
+  modificar,
+} from "../../shared/helpers/FuncionesMemoria.js";
 const Autos = [];
 
 export function guardarAuto(Auto) {
@@ -14,30 +15,28 @@ export function guardarAuto(Auto) {
   }
 }
 
-export function recuperarAuto(id) {
-  const buscada = Autos.find((c) => c.id === id);
-  if (buscada) {
-    return copiarAuto(buscada);
-  } else {
-    throw crearErrorNoEncontrado(id);
-  }
+export function recuperarAuto(_id) {
+  const autoEncontrado = buscarDato(_id, Autos);
+  return autoEncontrado;
 }
 
 export function recuperarAutos() {
   return copiarAutos(Autos);
 }
 
-export function recuperarAutosSegunTema(tema) {
-  return copiarAutos(Autos.filter((c) => c.temas.includes(tema)));
-}
+export const reemplazarAuto = (datos) => {
+  const autoEncontrado = buscarDato(datos.id, Autos);
+  const autoModificado = modificar(autoEncontrado, datos);
+  return autoModificado;
+};
 
 export function eliminarAuto(id) {
-  const indiceBuscado = Autos.findIndex((c) => c.id === id);
-  if (indiceBuscado === -1) {
-    throw crearErrorNoEncontrado(id);
-  } else {
-    Autos.splice(indiceBuscado, 1);
-  }
+  const autoEncontrado = buscarDato(id, Autos);
+  Autos.splice(autoEncontrado, 1);
+  return {
+    id: autoEncontrado.id,
+    borrada: true,
+  };
 }
 
 export function eliminarAutos() {

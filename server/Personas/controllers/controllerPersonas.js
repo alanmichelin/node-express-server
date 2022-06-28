@@ -37,9 +37,7 @@ export async function post(req, res, next) {
 }
 export async function patch(req, res, next) {
   try {
-    //Agrego await
     const personaModificada = await modificarPersonas(req.body);
-    //const personaModificada = modificarPersonas(req.body);
     res.status(201).json(personaModificada);
   } catch (err) {
     next(err);

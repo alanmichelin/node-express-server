@@ -6,14 +6,14 @@ import * as daoBaseDeDatos from "./autosDaoBaseDeDatos.js";
 let dao;
 
 switch (MODO_PERSISTENCIA) {
-  case "ARCHIVO":
-    dao = daoArchivos;
+  case "MEMORIA":
+    dao = daoMemoria;
     break;
   case "DATABASE":
     dao = daoBaseDeDatos;
     break;
   default:
-    dao = daoMemoria;
+    dao = daoArchivos;
 }
 
 export default dao;
