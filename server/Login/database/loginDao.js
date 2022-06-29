@@ -6,7 +6,7 @@ let dao;
 
 switch (MODO_PERSISTENCIA) {
   case "MEMORIA":
-    dao = daoBaseDeDatos;
+    dao = daoMemoria;
     break;
   case "DATABASE":
     dao = daoBaseDeDatos;
